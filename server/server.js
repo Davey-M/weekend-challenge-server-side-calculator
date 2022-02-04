@@ -9,27 +9,15 @@ app.use(express.urlencoded({ extended: true }));
 // this is the function the will do all the calculations on the incoming data
 const equation = require('./modules/equation');
 
-// HELPER FUNCTIONS -------------------------------------------
-function add(numOne, numTwo) {
-    return numOne + numTwo;
-}
-
-function subtract(numOne, numTwo) {
-    return numOne - numTwo;
-}
-
-function multiply(numOne, numTwo) {
-    return numOne * numTwo;
-}
-
-function divide(numOne, numTwo) {
-    return numOne / numTwo;
-}
-// HELPER FUNCTIONS -------------------------------------------
-
 // ENDPOINTS --------------------------------------------------
 app.post('/calculate', (req, res) => {
-    console.log(req.body);
+
+    let { calculation } = req.body;
+    console.log(calculation);
+
+    let result = equation(calculation);
+    console.log(result);
+
     res.sendStatus(201);
 })
 // ENDPOINTS --------------------------------------------------
