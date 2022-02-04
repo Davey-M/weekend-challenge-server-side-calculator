@@ -1,0 +1,24 @@
+{
+  "name": "weekend-challenge-server-side-calculator",
+  "version": "1.0.0",
+  "description": "[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davey-M/weekend-challenge-server-side-calculator.git"
+  },
+  "keywords": [],
+  "author": "David Meuer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Davey-M/weekend-challenge-server-side-calculator/issues"
+  },
+  "homepage": "https://github.com/Davey-M/weekend-challenge-server-side-calculator#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
