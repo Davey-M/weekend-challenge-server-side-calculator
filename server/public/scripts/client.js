@@ -46,10 +46,10 @@ function checkString(input) {
     let numbers = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' ];
 
     // check that the last number of the string is a number
-    if (numbers.includes(input[input.length - 1])) return false;
+    if (!numbers.includes(input[input.length - 1])) return false;
 
     // check that the first number of the string is a number
-    if (numbers.includes(input[0])) return false;
+    if (!numbers.includes(input[0])) return false;
 
     return true;
 }

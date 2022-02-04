@@ -3,6 +3,9 @@ const app = express();
 
 const port = 5000;
 
+app.use(express.static(__dirname + "/public"));
+app.use(express.urlencoded({ extended: true }));
+
 // this is the function the will do all the calculations on the incoming data
 const equation = require('./modules/equation');
 
@@ -24,7 +27,12 @@ function divide(numOne, numTwo) {
 }
 // HELPER FUNCTIONS -------------------------------------------
 
-app.use(express.static(__dirname + "/public"));
+// ENDPOINTS --------------------------------------------------
+app.post('/calculate', (req, res) => {
+    console.log(req.body);
+    res.sendStatus(201);
+})
+// ENDPOINTS --------------------------------------------------
 
 app.listen(port, (err) => {
 	if (err) {
