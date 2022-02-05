@@ -1,6 +1,4 @@
 function equation(string) {
-    console.log(string);
-
     let numbers = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', '.' ];
     let operators = ['*','/','+','-'];
 
@@ -32,11 +30,7 @@ function equation(string) {
         equationArray[i] = Number(numberString);
     }
 
-    console.log(equationArray);
-
-    let result = multiply(equationArray);
-
-    console.log(result);
+    let result = multiplyDivide(equationArray);
 
     // this must return the final answer after all the recursive functions run
     return result;
@@ -45,7 +39,7 @@ function equation(string) {
 // RECURSIVE FUNCTIONS -------------------------------------------
 
 /*
-    The following recursive functions all follow the same pattern
+    The following recursive functions both follow the same pattern
 
     first they are given an array
 
@@ -61,7 +55,7 @@ function equation(string) {
     once the loop is finished they send the equationArray to the next operator in line
 */
 
-function add(array) {
+function addSubtract(array) {
 
     let equationArray = [];
 
@@ -74,25 +68,7 @@ function add(array) {
             let numOne = equationArray.pop();
 
             equationArray.push(numOne + number);
-        } else {
-            equationArray.push(number);
-        }
-    }
-
-    let result = subtract(equationArray);
-
-    return result;
-}
-
-function subtract(array) {
-
-    let equationArray = [];
-
-    for (let i = 0; i < array.length; i++) {
-        let number = array[i];
-        let operator = array[i - 1];
-
-        if (operator && operator === '-') {
+        } else if (operator && operator === '-') {
             equationArray.pop();
             let numOne = equationArray.pop();
 
@@ -107,7 +83,7 @@ function subtract(array) {
     return result;
 }
 
-function multiply(array) {
+function multiplyDivide(array) {
 
     let equationArray = [];
 
@@ -120,25 +96,7 @@ function multiply(array) {
             let numOne = equationArray.pop();
 
             equationArray.push(numOne * number);
-        } else {
-            equationArray.push(number);
-        }
-    }
-
-    let result = divide(equationArray);
-
-    return result;
-}
-
-function divide(array) {
-
-    let equationArray = [];
-
-    for (let i = 0; i < array.length; i++) {
-        let number = array[i];
-        let operator = array[i - 1];
-
-        if (operator && operator === '/') {
+        } else if (operator && operator === '/') {
             equationArray.pop();
             let numOne = equationArray.pop();
 
@@ -148,7 +106,7 @@ function divide(array) {
         }
     }
 
-    let result = add(equationArray);
+    let result = addSubtract(equationArray);
 
     return result;
 }

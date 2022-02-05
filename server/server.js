@@ -13,7 +13,6 @@ const equation = require('./modules/equation');
 app.post('/calculate', (req, res) => {
 
     let { calculation } = req.body;
-    console.log(calculation);
 
     let result = equation(calculation);
     console.log(result);
