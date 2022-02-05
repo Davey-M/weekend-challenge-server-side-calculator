@@ -43,10 +43,68 @@ function equation(string) {
 }
 
 // RECURSIVE FUNCTIONS -------------------------------------------
+
+/*
+    The following recursive functions all follow the same pattern
+
+    first they are given an array
+
+    then they create a blank equationArray to hold the results once they have run
+
+    then they loop through the array
+
+        in this loop they check to see if the previous number is an operator
+
+        if it is the operator they are looking for they pull the items from 
+        the end of the equationArray and push the result of their equation to the equationArray
+
+    once the loop is finished they send the equationArray to the next operator in line
+*/
+
 function add(array) {
+
+    let equationArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        let number = array[i];
+        let operator = array[i - 1];
+
+        if (operator && operator === '+') {
+            equationArray.pop();
+            let numOne = equationArray.pop();
+
+            equationArray.push(numOne + number);
+        } else {
+            equationArray.push(number);
+        }
+    }
+
+    let result = subtract(equationArray);
+
+    return result;
 }
 
 function subtract(array) {
+
+    let equationArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        let number = array[i];
+        let operator = array[i - 1];
+
+        if (operator && operator === '-') {
+            equationArray.pop();
+            let numOne = equationArray.pop();
+
+            equationArray.push(numOne - number);
+        } else {
+            equationArray.push(number);
+        }
+    }
+
+    let result = equationArray;
+
+    return result;
 }
 
 function multiply(array) {
@@ -61,16 +119,38 @@ function multiply(array) {
             equationArray.pop();
             let numOne = equationArray.pop();
 
-            equationArray.push(number * numOne);
+            equationArray.push(numOne * number);
         } else {
             equationArray.push(number);
         }
     }
 
-    return equationArray;
+    let result = divide(equationArray);
+
+    return result;
 }
 
 function divide(array) {
+
+    let equationArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        let number = array[i];
+        let operator = array[i - 1];
+
+        if (operator && operator === '/') {
+            equationArray.pop();
+            let numOne = equationArray.pop();
+
+            equationArray.push(numOne / number);
+        } else {
+            equationArray.push(number);
+        }
+    }
+
+    let result = add(equationArray);
+
+    return result;
 }
 // RECURSIVE FUNCTIONS -------------------------------------------
 
