@@ -54,7 +54,15 @@ function getCalculatorHistory() {
 
 function renderCalcHistory(history) {
 
-    console.log(history);
+    console.log(history.equations);
+
+    $('#resultContainer').empty();
+
+    history.equations.forEach((item, index) => {
+        $('#resultContainer').append(`
+            <p class="result" data-index="${index}" >${item.equation} = <b>${item.result}</b></p>
+        `)
+    });
 }
 
 // HELPER FUNCTIONS -------------------------------------------
