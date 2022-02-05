@@ -28,28 +28,45 @@ function handleInput(e) {
     $.ajax(options)
         .then(response => {
             console.log(response);
+            getCalculatorHistory();
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         })
 }
 
 // get the calculator history from the server
 function getCalculatorHistory() {
 
+    let options = {
+        method: 'GET',
+        url: '/equations'
+    }
 
+    $.ajax(options)
+        .then(response => {
+            renderCalcHistory(response);
+        })
+        .catch(error => {
+            console.error(error);
+        })
+}
 
+function renderCalcHistory(history) {
+
+    console.log(history);
 }
 
 // HELPER FUNCTIONS -------------------------------------------
 function checkString(input) {
     let numbers = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' ];
-
+    
     // check that the last number of the string is a number
     if (!numbers.includes(input[input.length - 1])) return false;
-
+    
     // check that the first number of the string is a number
     if (!numbers.includes(input[0])) return false;
-
+    
     return true;
 }
+// HELPER FUNCTIONS -------------------------------------------

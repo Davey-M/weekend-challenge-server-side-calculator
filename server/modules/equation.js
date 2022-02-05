@@ -30,7 +30,7 @@ function equation(string) {
         equationArray[i] = Number(numberString);
     }
 
-    let result = multiplyDivide(equationArray);
+    let result = multiplyDivide(equationArray)[0];
 
     // this must return the final answer after all the recursive functions run
     return result;
