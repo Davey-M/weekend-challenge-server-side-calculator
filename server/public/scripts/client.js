@@ -6,6 +6,12 @@ $(main)
 
 function main() {
     $('#calculatorForm').on('submit', handleInput);
+
+    $('.calcButton').on('click', handleButtons);
+
+    $('#calculatorInput').on('keydown', handleInputTyping);
+
+    $('#inputClearer').on('click', clearInput);
 }
 
 // send the incoming input string to the server
@@ -33,6 +39,36 @@ function handleInput(e) {
         .catch(error => {
             console.error(error);
         })
+
+    e.target.reset();
+}
+
+function handleButtons(e) {
+    e.preventDefault();
+
+    let calcInputText = $('#calculatorInput').val();
+    $('#calculatorInput').val(calcInputText + $(this).data().value);
+}
+
+function handleInputTyping(e) {
+    e.preventDefault();
+    
+    let goodKeys = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', ];
+    
+    let calcInputText = $('#calculatorInput').val();
+    if (goodKeys.includes(e.key)) {
+        $('#calculatorInput').val(calcInputText + e.key);
+    }
+
+    if (e.key === 'Enter') {
+        $('#calculatorForm').submit();
+    }
+}
+
+function clearInput(e) {
+    e.preventDefault();
+
+    $('#calculatorInput').val('');
 }
 
 // get the calculator history from the server
