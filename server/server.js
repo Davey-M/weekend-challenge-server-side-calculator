@@ -35,7 +35,7 @@ app.get('/equations', (req, res) => {
 app.delete('/equations', (req, res) => {
     pastEquations = [];
 
-    res.sendStatus(201);
+    res.sendStatus(200);
 })
 // ENDPOINTS --------------------------------------------------
 

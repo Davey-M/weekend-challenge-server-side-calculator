@@ -131,6 +131,9 @@ function renderCalcHistory(history) {
     if (history.equations[0]) {
         $('#calcResults').text(history.equations[0].result);
     }
+    else {
+        $('#calcResults').text('0');
+    }
     
     $('#resultContainer').empty();
     
