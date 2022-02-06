@@ -8,6 +8,7 @@ let equationHistory = [];
 
 let lastResult = 0;
 
+// setup click listeners for buttons on DOM
 function main() {
     $('#calculatorForm').on('submit', handleInput);
 
@@ -30,6 +31,7 @@ function handleInput(e) {
 
     let inputString = $('#calculatorInput').val();
 
+    // do not send blank strings to server
     if (inputString === '') {
         return;
     }
@@ -37,6 +39,7 @@ function handleInput(e) {
     // check the string for the correct format
     if (checkString(inputString) === false) return;
 
+    // post method is used because we are sending a calculation on the server
     let options = {
         method: 'POST',
         url: '/calculate',
@@ -47,6 +50,7 @@ function handleInput(e) {
 
     $.ajax(options)
         .then(response => {
+            // after data is sent to server we get the new state of the app
             console.log(response);
             getCalculatorHistory();
         })
@@ -62,8 +66,10 @@ function handleButtons(e) {
 
     let operators = [ '+', '-', '*', '/', ]
     
+    // data allows us to use one function for all the button handling
     let buttonVal = $(this).data().value;
 
+    // sanitize inputs if an operator button is clicked
     if (operators.includes(buttonVal) && $('#calculatorInput').val() === '') {
         $('#calculatorInput').val(lastResult + buttonVal);
 
@@ -82,9 +88,12 @@ function handleInputTyping(e) {
     let goodKeys = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', ];
     let operators = [ '+', '-', '*', '/', ]
 
+    // get the current calculation from the input field
     let calcInputText = $('#calculatorInput').val();
 
+    // sanitizing inputs:
     if (operators.includes(e.key) && $('#calculatorInput').val() === '') {
+        // adds the last result if you type an operator before anything else
         $('#calculatorInput').val(lastResult + e.key);
     } else if (goodKeys.includes(e.key)) {
         $('#calculatorInput').val(calcInputText + e.key);
@@ -104,11 +113,13 @@ function clearInput(e) {
 // get the calculator history from the server
 function getCalculatorHistory() {
 
+    // get method is used because we are getting the state of the app from the server
     let options = {
         method: 'GET',
         url: '/equations'
     }
 
+    // results are rendered on the page after being collected from the server
     $.ajax(options)
         .then(response => {
             renderCalcHistory(response);
@@ -120,11 +131,13 @@ function getCalculatorHistory() {
 
 function clearHistory() {
 
+    // delete method is used because we are clearing the state of the application on the server
     let options = {
         method: 'DELETE',
         url: '/equations',
     }
 
+    // handling response
     $.ajax(options)
         .then(response => {
             console.log(response);
@@ -138,10 +151,12 @@ function clearHistory() {
 
 function renderCalcHistory(history) {
 
-    console.log(history.equations);
+    // console.log(history.equations); // this is a test (can be removed)
 
+    // this is the data coming back from the server
     equationHistory = history.equations;
 
+    // set the state of the last result
     if (history.equations[0]) {
         $('#calcResults').text(history.equations[0].result);
         lastResult = history.equations[0].result;
@@ -153,6 +168,7 @@ function renderCalcHistory(history) {
     
     $('#resultContainer').empty();
     
+    // forEach is used for easy access to the item and its index
     history.equations.forEach((item, index) => {
         $('#resultContainer').append(`
             <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
@@ -163,8 +179,9 @@ function renderCalcHistory(history) {
 function reloadEquation() {
     let index = $(this).data().index;
     
-    console.log(index);
+    // console.log(index); // just a test (can be removed)
     
+    // set the state of the last result
     lastResult = equationHistory[index].result;
 
     $('#calcResults').text(equationHistory[index].result);
@@ -174,7 +191,7 @@ function reloadEquation() {
 
 // HELPER FUNCTIONS -------------------------------------------
 function checkString(input) {
-    let numbers = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' ];
+    let numbers = ['0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', '.' ];
     
     // check that the last number of the string is a number
     if (!numbers.includes(input[input.length - 1])) return false;

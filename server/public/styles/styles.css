@@ -22,9 +22,9 @@ body {
 	--header: #ff4242;
 	--header-light: #ff6f6f;
 	--light-text: white;
-	--history-background: #dbdbdb;
-	--calc-background: #dbdbdb;
-	--body-background: #bdbdbd;
+	--history-background: #ececec;
+	--calc-background: #ececec;
+	--body-background: #ffffff;
 }
 
 h1 {

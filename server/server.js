@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 // this is the function the will do all the calculations on the incoming data
 const equation = require('./modules/equation');
 
+// holds the current state of the application
 let pastEquations = [];
 
 // ENDPOINTS --------------------------------------------------
@@ -16,8 +17,10 @@ app.post('/calculate', (req, res) => {
 
     let { calculation } = req.body;
 
+    // do the actual calculations (done in the equation.js file)
     let result = equation(calculation);
     
+    // send the calculation that was just done to the state of the application
     pastEquations.unshift({
         equation: calculation,
         result: result,
@@ -33,6 +36,7 @@ app.get('/equations', (req, res) => {
 })
 
 app.delete('/equations', (req, res) => {
+    // reset the state of the application
     pastEquations = [];
 
     res.sendStatus(200);
