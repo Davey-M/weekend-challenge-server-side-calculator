@@ -58,6 +58,7 @@ function handleInput(e) {
 function handleButtons(e) {
     e.preventDefault();
 
+    // each button holds their value in the their data tag
     let calcInputText = $('#calculatorInput').val();
     $('#calculatorInput').val(calcInputText + $(this).data().value);
 }
@@ -65,18 +66,24 @@ function handleButtons(e) {
 function handleInputTyping(e) {
     e.preventDefault();
     
+    // used for validation so the input can only accept the proper inputs
     let goodKeys = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', ];
-    
+    let operators = [ '+', '-', '*', '/', ]
+
     let calcInputText = $('#calculatorInput').val();
-    if (goodKeys.includes(e.key)) {
+
+    if (operators.includes(e.key) && $('#calculatorInput').val() === '') {
+        if (equationHistory[0]) {
+            $('#calculatorInput').val(equationHistory[0].result + e.key);
+        }
+        else {
+            $('#calculatorInput').val('0' + e.key);
+        }
+    } else if (goodKeys.includes(e.key)) {
         $('#calculatorInput').val(calcInputText + e.key);
-    }
-    
-    if (e.key === 'Enter') {
+    } else if (e.key === 'Enter') {
         $('#calculatorForm').submit();
-    }
-    
-    if (e.key === 'Backspace') {
+    } else if (e.key === 'Backspace') {
         $('#calculatorInput').val(calcInputText.substring(0, calcInputText.length - 1));
     }
 }
