@@ -20,5 +20,8 @@
   "homepage": "https://github.com/Davey-M/weekend-challenge-server-side-calculator#readme",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "engines": {
+    "node": "8.1.2"
   }
 }
