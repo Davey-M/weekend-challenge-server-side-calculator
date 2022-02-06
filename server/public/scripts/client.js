@@ -6,6 +6,8 @@ $(main)
 
 let equationHistory = [];
 
+let lastResult = 0;
+
 function main() {
     $('#calculatorForm').on('submit', handleInput);
 
@@ -58,9 +60,19 @@ function handleInput(e) {
 function handleButtons(e) {
     e.preventDefault();
 
+    let operators = [ '+', '-', '*', '/', ]
+    
+    let buttonVal = $(this).data().value;
+
+    if (operators.includes(buttonVal) && $('#calculatorInput').val() === '') {
+        $('#calculatorInput').val(lastResult + buttonVal);
+
+        return;
+    }
+
     // each button holds their value in the their data tag
     let calcInputText = $('#calculatorInput').val();
-    $('#calculatorInput').val(calcInputText + $(this).data().value);
+    $('#calculatorInput').val(calcInputText + buttonVal);
 }
 
 function handleInputTyping(e) {
@@ -73,12 +85,7 @@ function handleInputTyping(e) {
     let calcInputText = $('#calculatorInput').val();
 
     if (operators.includes(e.key) && $('#calculatorInput').val() === '') {
-        if (equationHistory[0]) {
-            $('#calculatorInput').val(equationHistory[0].result + e.key);
-        }
-        else {
-            $('#calculatorInput').val('0' + e.key);
-        }
+        $('#calculatorInput').val(lastResult + e.key);
     } else if (goodKeys.includes(e.key)) {
         $('#calculatorInput').val(calcInputText + e.key);
     } else if (e.key === 'Enter') {
@@ -137,9 +144,11 @@ function renderCalcHistory(history) {
 
     if (history.equations[0]) {
         $('#calcResults').text(history.equations[0].result);
+        lastResult = history.equations[0].result;
     }
     else {
         $('#calcResults').text('0');
+        lastResult = 0;
     }
     
     $('#resultContainer').empty();
@@ -156,6 +165,8 @@ function reloadEquation() {
     
     console.log(index);
     
+    lastResult = equationHistory[index].result;
+
     $('#calcResults').text(equationHistory[index].result);
     
     $('#calculatorInput').val(equationHistory[index].equation);
