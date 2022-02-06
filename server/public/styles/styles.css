@@ -89,7 +89,7 @@ main {
 }
 
 #inputClearer {
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 }
 
 #calculatorInput {
@@ -107,16 +107,24 @@ button {
 
 button:hover {
 	background-color: var(--header-light);
+	cursor: pointer;
+}
+
+#clearHistoryButton {
+	padding: 0.5rem;
 }
 
 .result {
-	padding: 0rem 2rem;
+	/* padding: 0rem 2rem; */
 	width: max-content;
-	background-color: white;
+	/* background-color: white; */
+	transition: all 0.2s;
 }
 
 .result:hover {
 	cursor: pointer;
+	background-color: white;
+	padding-left: 2rem;
 }
 
 .result b {
