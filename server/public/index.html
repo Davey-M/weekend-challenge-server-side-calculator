@@ -14,8 +14,15 @@
 	</head>
 	<body>
 
+        <header>
+            <h1>Server Side Calculator</h1>
+        </header>
+
+        <div>
+            <h1 id="calcResults">0</h1>
+        </div>
+
         <form id="calculatorForm">
-            <h1 id="calculatorResult"></h1>
             <input id="calculatorInput" type="text" placeholder="0">
             <button id="inputClearer">C</button>
 
@@ -39,8 +46,11 @@
             </div>
         </form>
 
-        <div id="resultContainer">
-            
+        <div class="historyContainer">
+            <h2>History</h2>
+            <ul id="resultContainer">
+                
+            </ul>
         </div>
 
     </body>

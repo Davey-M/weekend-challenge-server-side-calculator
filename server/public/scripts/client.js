@@ -12,6 +12,8 @@ function main() {
     $('#calculatorInput').on('keydown', handleInputTyping);
 
     $('#inputClearer').on('click', clearInput);
+
+    getCalculatorHistory();
 }
 
 // send the incoming input string to the server
@@ -96,11 +98,13 @@ function renderCalcHistory(history) {
 
     console.log(history.equations);
 
+    $('#calcResults').text(history.equations[0].result);
+
     $('#resultContainer').empty();
 
     history.equations.forEach((item, index) => {
         $('#resultContainer').append(`
-            <p class="result" data-index="${index}" >${item.equation} = <b>${item.result}</b></p>
+            <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
         `)
     });
 }

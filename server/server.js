@@ -18,7 +18,7 @@ app.post('/calculate', (req, res) => {
 
     let result = equation(calculation);
     
-    pastEquations.push({
+    pastEquations.unshift({
         equation: calculation,
         result: result,
     })
