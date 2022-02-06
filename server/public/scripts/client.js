@@ -59,9 +59,13 @@ function handleInputTyping(e) {
     if (goodKeys.includes(e.key)) {
         $('#calculatorInput').val(calcInputText + e.key);
     }
-
+    
     if (e.key === 'Enter') {
         $('#calculatorForm').submit();
+    }
+    
+    if (e.key === 'Backspace') {
+        $('#calculatorInput').val(calcInputText.substring(0, calcInputText.length - 1));
     }
 }
 
