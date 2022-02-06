@@ -10,10 +10,117 @@
 	padding: 0.5rem;
 }
 
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+	background-color: var(--body-background);
+}
+
+:root {
+	--header: #ff4242;
+	--header-light: #ff6f6f;
+	--light-text: white;
+	--history-background: #dbdbdb;
+	--calc-background: #dbdbdb;
+	--body-background: #bdbdbd;
+}
+
 h1 {
 	margin: 0;
 }
 
 h2 {
 	margin: 0;
+}
+
+#calculatorForm {
+	width: max-content;
+	margin: 1rem auto;
+}
+
+#calculatorForm div {
+	width: max-content;
+}
+
+.inputContainer {
+	margin: auto;
+}
+
+#calcResult {
+	width: max-content;
+	margin: auto;
+}
+
+.buttonContainer {
+	margin: 1rem auto;
+}
+
+.htmlContainer {
+	width: 100%;
+	max-width: 30rem;
+	height: 100vh;
+	margin: auto;
+
+	background-color: var(--calc-background);
+
+	display: grid;
+	grid-template-rows: max-content 1fr;
+}
+
+.historyContainer {
+	padding: 1rem;
+	background-color: var(--history-background);
+}
+
+header {
+	width: calc(100% - 2rem);
+	text-align: center;
+	padding: 1rem;
+	background-color: var(--header);
+	color: var(--light-text);
+}
+
+main {
+	width: 100%;
+	display: grid;
+	grid-template-rows: max-content 1fr;
+}
+
+#inputClearer {
+	padding: 0.5rem 1rem;
+}
+
+#calculatorInput {
+	outline: none;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+}
+
+button {
+	background-color: var(--header);
+	color: var(--light-text);
+	border: none;
+}
+
+button:hover {
+	background-color: var(--header-light);
+}
+
+.result {
+	padding: 0rem 2rem;
+	width: max-content;
+	background-color: white;
+}
+
+.result:hover {
+	cursor: pointer;
+}
+
+.result b {
+	background-color: var(--header);
+	color: var(--light-text);
+	padding: 0rem 1rem;
 }

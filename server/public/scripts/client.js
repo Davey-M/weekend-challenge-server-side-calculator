@@ -146,7 +146,7 @@ function renderCalcHistory(history) {
     
     history.equations.forEach((item, index) => {
         $('#resultContainer').append(`
-        <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
+            <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
         `)
     });
 }

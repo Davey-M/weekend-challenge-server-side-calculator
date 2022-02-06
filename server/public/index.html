@@ -14,49 +14,48 @@
 	</head>
 	<body>
 
-        <header>
-            <h1>Server Side Calculator</h1>
-        </header>
-
-        <main>
-            <div>
-                <h1 id="calcResults">0</h1>
-            </div>
-
-            <form id="calculatorForm">
-                <div>
-                    <input id="calculatorInput" type="text" placeholder="0">
-                    <button id="inputClearer">C</button>
+        <div class="htmlContainer">
+            <header>
+                <h1>Server Side Calculator</h1>
+            </header>
+    
+            <main>
+                <form id="calculatorForm">
+                    <h1 id="calcResults">0</h1>
+                    <div class="inputContainer">
+                        <input id="calculatorInput" type="text" placeholder="0">
+                        <button id="inputClearer">C</button>
+                    </div>
+    
+                    <div class="buttonContainer">
+                        <button class="calcButton" data-value="7">7</button>
+                        <button class="calcButton" data-value="8">8</button>
+                        <button class="calcButton" data-value="9">9</button>
+                        <button class="calcButton" data-value="+">+</button>
+                        <button class="calcButton" data-value="4">4</button>
+                        <button class="calcButton" data-value="5">5</button>
+                        <button class="calcButton" data-value="6">6</button>
+                        <button class="calcButton" data-value="-">-</button>
+                        <button class="calcButton" data-value="1">1</button>
+                        <button class="calcButton" data-value="2">2</button>
+                        <button class="calcButton" data-value="3">3</button>
+                        <button class="calcButton" data-value="*">*</button>
+                        <button class="calcButton" data-value="0">0</button>
+                        <button class="calcButton" data-value=".">.</button>
+                        <button>=</button>
+                        <button class="calcButton" data-value="/">/</button>
+                    </div>
+                </form>
+    
+                <div class="historyContainer">
+                    <button id="clearHistoryButton">Clear History</button>
+                    <h2>History</h2>
+                    <ul id="resultContainer">
+                        
+                    </ul>
                 </div>
-
-                <div class="buttonContainer">
-                    <button class="calcButton" data-value="7">7</button>
-                    <button class="calcButton" data-value="8">8</button>
-                    <button class="calcButton" data-value="9">9</button>
-                    <button class="calcButton" data-value="+">+</button>
-                    <button class="calcButton" data-value="4">4</button>
-                    <button class="calcButton" data-value="5">5</button>
-                    <button class="calcButton" data-value="6">6</button>
-                    <button class="calcButton" data-value="-">-</button>
-                    <button class="calcButton" data-value="1">1</button>
-                    <button class="calcButton" data-value="2">2</button>
-                    <button class="calcButton" data-value="3">3</button>
-                    <button class="calcButton" data-value="*">*</button>
-                    <button class="calcButton" data-value="0">0</button>
-                    <button class="calcButton" data-value=".">.</button>
-                    <input type="submit" value="=">
-                    <button class="calcButton" data-value="/">/</button>
-                </div>
-            </form>
-
-            <div class="historyContainer">
-                <button id="clearHistoryButton">Clear History</button>
-                <h2>History</h2>
-                <ul id="resultContainer">
-                    
-                </ul>
-            </div>
-        </main>
+            </main>    
+        </div>
 
     </body>
 </html>
