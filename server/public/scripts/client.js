@@ -4,6 +4,8 @@ $(main)
 // display history on DOM
 // set input field with buttons
 
+let equationHistory = [];
+
 function main() {
     $('#calculatorForm').on('submit', handleInput);
 
@@ -12,6 +14,8 @@ function main() {
     $('#calculatorInput').on('keydown', handleInputTyping);
 
     $('#inputClearer').on('click', clearInput);
+
+    $('#resultContainer').on('click', '.result', reloadEquation);
 
     getCalculatorHistory();
 }
@@ -55,7 +59,7 @@ function handleButtons(e) {
 function handleInputTyping(e) {
     e.preventDefault();
     
-    let goodKeys = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', ];
+    let goodKeys = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+', '-', '*', '/', ];
     
     let calcInputText = $('#calculatorInput').val();
     if (goodKeys.includes(e.key)) {
@@ -98,15 +102,27 @@ function renderCalcHistory(history) {
 
     console.log(history.equations);
 
+    equationHistory = history.equations;
+
     $('#calcResults').text(history.equations[0].result);
-
+    
     $('#resultContainer').empty();
-
+    
     history.equations.forEach((item, index) => {
         $('#resultContainer').append(`
-            <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
+        <li class="result" data-index="${index}" ><p>${item.equation} = <b>${item.result}</b></p></li>
         `)
     });
+}
+
+function reloadEquation() {
+    let index = $(this).data().index;
+    
+    console.log(index);
+    
+    $('#calcResults').text(equationHistory[index].result);
+    
+    $('#calculatorInput').val(equationHistory[index].equation);
 }
 
 // HELPER FUNCTIONS -------------------------------------------
