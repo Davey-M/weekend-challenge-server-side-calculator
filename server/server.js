@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 // this is the function the will do all the calculations on the incoming data
 const equation = require('./modules/equation');
 
-const pastEquations = [];
+let pastEquations = [];
 
 // ENDPOINTS --------------------------------------------------
 app.post('/calculate', (req, res) => {
@@ -30,6 +30,12 @@ app.get('/equations', (req, res) => {
     res.send({
         equations: pastEquations,
     })
+})
+
+app.delete('/equations', (req, res) => {
+    pastEquations = [];
+
+    res.sendStatus(201);
 })
 // ENDPOINTS --------------------------------------------------
 

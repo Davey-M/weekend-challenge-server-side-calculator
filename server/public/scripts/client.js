@@ -17,6 +17,8 @@ function main() {
 
     $('#resultContainer').on('click', '.result', reloadEquation);
 
+    $('#clearHistoryButton').on('click', clearHistory);
+
     getCalculatorHistory();
 }
 
@@ -25,6 +27,10 @@ function handleInput(e) {
     e.preventDefault();
 
     let inputString = $('#calculatorInput').val();
+
+    if (inputString === '') {
+        return;
+    }
 
     // check the string for the correct format
     if (checkString(inputString) === false) return;
@@ -98,13 +104,33 @@ function getCalculatorHistory() {
         })
 }
 
+function clearHistory() {
+
+    let options = {
+        method: 'DELETE',
+        url: '/equations',
+    }
+
+    $.ajax(options)
+        .then(response => {
+            console.log(response);
+            getCalculatorHistory();
+        })
+        .catch(error => {
+            console.error(error);
+        })
+
+}
+
 function renderCalcHistory(history) {
 
     console.log(history.equations);
 
     equationHistory = history.equations;
 
-    $('#calcResults').text(history.equations[0].result);
+    if (history.equations[0]) {
+        $('#calcResults').text(history.equations[0].result);
+    }
     
     $('#resultContainer').empty();
     
